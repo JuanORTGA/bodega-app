@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useData } from '../context/DataContext';
+import { useData } from '../../context/DataContext';
 import './Dashboard.css';
 
 const Dashboard = () => {

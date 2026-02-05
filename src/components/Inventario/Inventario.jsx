@@ -12,7 +12,7 @@ import {
   Shield, Target, Zap, Clock, Star
 } from 'lucide-react';
 import './Inventario.css';
-import { supabase } from '../lib/supabase'; // ← SOLO ESTA IMPORTACIÓN
+import { supabase } from '../../lib/supabase'; // ← SOLO ESTA IMPORTACIÓN
 
 const Inventario = () => {
   // ==================== ESTADOS PRINCIPALES ====================

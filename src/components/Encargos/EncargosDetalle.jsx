@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useData } from '../context/DataContext';
+import { useData } from '../../context/DataContext';
 import './EncargosDetalle.css';
 
 const EncargosDetalle = () => {
