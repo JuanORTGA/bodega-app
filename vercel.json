@@ -2,7 +2,11 @@
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "buildCommand": "npm run build",
   "outputDirectory": "build",
+<<<<<<< HEAD
   "devCommand": "npm start", 
+=======
+  "devCommand": "npm run dev",
+>>>>>>> 0280aa88cbd7a68917aaccf6bd33dce7b9588c44
   "installCommand": "npm install"
 }
 
