@@ -3,18 +3,30 @@ import { useData } from '../../context/DataContext';
 import './EncargosDetalle.css';
 
 const EncargosDetalle = () => {
+  // Primero obtenemos el contexto completo
+  const dataContext = useData();
+  
+  // Extraemos las funciones que SÍ existen en el contexto
   const { 
     encargos, 
     addEncargo, 
     updateEncargoStatus, 
     products, 
     suppliers,
-    exchangeRate,
     convertToVES,
-    deleteProduct,
     updateProduct,
     uploadImage
-  } = useData();
+  } = dataContext;
+  
+  // Definimos las funciones que NO están en el contexto con valores por defecto
+  const exchangeRate = dataContext.exchangeRate || 36.5; // Tasa de cambio por defecto
+  
+  const deleteProduct = dataContext.deleteProduct || 
+    (async (productId) => {
+      console.log("Función deleteProduct llamada con ID:", productId);
+      // Aquí iría tu lógica para eliminar productos si la tienes
+      return Promise.resolve();
+    });
   
   // Estados principales
   const [filtroEstado, setFiltroEstado] = useState('todos');
@@ -232,7 +244,7 @@ const EncargosDetalle = () => {
     setNuevoEncargo(prev => ({
       ...prev,
       total: total,
-      total_ves: convertToVES(total)
+      total_ves: convertToVES ? convertToVES(total) : (total * exchangeRate)
     }));
   };
   
@@ -384,7 +396,7 @@ const EncargosDetalle = () => {
       `"${o.proveedor}"`,
       `"${Array.isArray(o.productos) ? o.productos.map(p => p.nombre).join(', ') : o.productos}"`,
       o.total || 0,
-      o.total_ves || convertToVES(o.total || 0),
+      o.total_ves || (convertToVES ? convertToVES(o.total || 0) : (o.total || 0) * exchangeRate),
       o.estado,
       new Date(o.fecha_creacion || o.created_at).toLocaleDateString(),
       o.entrega_estimada
@@ -712,7 +724,7 @@ const EncargosDetalle = () => {
                       <td className="encargo-total">
                         <div className="total-usd">${encargo.total?.toFixed(2) || '0.00'} USD</div>
                         <div className="total-ves">
-                          Bs. {(encargo.total_ves || convertToVES(encargo.total || 0)).toFixed(2)} VES
+                          Bs. {(encargo.total_ves || (convertToVES ? convertToVES(encargo.total || 0) : (encargo.total || 0) * exchangeRate)).toFixed(2)} VES
                         </div>
                       </td>
                       

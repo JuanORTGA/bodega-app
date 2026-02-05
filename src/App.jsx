@@ -1,11 +1,11 @@
 import React from 'react';
 import { DataProvider, useData } from './context/DataContext';
-import Dashboard from './components/Dashboard';
-import Inventario from './components/Inventario';
-import VentasDetalle from './components/VentasDetalle';
-import PedidosDetalle from './components/EncargosDetalle';
-import Reportes from './components/Reportes';
-import Proveedores from './components/Proveedores';
+import Dashboard from './components/Dashboard/Dashboard';
+import Inventario from './components/Inventario/Inventario';
+import VentasDetalle from './components/VentasDetalle/VentasDetalle';
+import Encargos from './components/Encargos/Encargos';
+import Reportes from './components/Reportes/Reportes';
+import Proveedores from './components/Proveedores/Proveedores';
 import './App.css';
 
 const AppContent = () => {
@@ -19,8 +19,8 @@ const AppContent = () => {
         return <Inventario />;
       case 'ventas':
         return <VentasDetalle />;
-      case 'pedidos':
-        return <PedidosDetalle />;
+      case 'Encargos':
+        return <Encargos />;
       case 'proveedores':
         return <Proveedores />;
       case 'reportes':
@@ -70,7 +70,7 @@ const AppContent = () => {
           💰 Ventas
         </button>
         <button 
-          className={`nav-btn ${selectedSection === 'pedidos' ? 'active' : ''}`}
+          className={`nav-btn ${selectedSection === 'Encargos' ? 'active' : ''}`}
           onClick={() => setSelectedSection('pedidos')}
         >
           📋 Encargos

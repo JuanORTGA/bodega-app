@@ -1,4 +1,4 @@
-// src/components/Inventario.js
+// src/components/Inventario.jsx
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Plus, Search, Filter, Edit, Trash2, Eye, BarChart3, 
@@ -11,8 +11,9 @@ import {
   Grid, List, Columns, DownloadCloud, UploadCloud,
   Shield, Target, Zap, Clock, Star
 } from 'lucide-react';
+import { supabase } from '../../supabaseClient';
 import './Inventario.css';
-import { supabase } from '../../lib/supabase'; // ← SOLO ESTA IMPORTACIÓN
+
 
 const Inventario = () => {
   // ==================== ESTADOS PRINCIPALES ====================
